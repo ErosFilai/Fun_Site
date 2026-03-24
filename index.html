@@ -619,6 +619,146 @@
         margin-top: 0.6rem;
       }
 
+      .mario-scene {
+        border: 4px solid #7f5cb5;
+        background: #000;
+        margin-top: 0.7rem;
+      }
+
+      .mario-scorebar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 120px;
+        color: #fff;
+        font-family: "Press Start 2P", cursive;
+        font-size: 0.85rem;
+        padding: 0.85rem 1.2rem 0;
+        z-index: 5;
+        pointer-events: none;
+      }
+
+      .mario-scorebar p {
+        margin: 0;
+        color: #fff;
+        line-height: 1.65;
+      }
+
+      .mario-score-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .mario-score-row.bottom {
+        margin-top: 0.5rem;
+      }
+
+      .mario-score-coin {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+      }
+
+      .mario-sky {
+        position: relative;
+        height: 360px;
+        overflow: hidden;
+        background-color: #548cff;
+      }
+
+      .mario-ground {
+        position: relative;
+        height: 95px;
+        overflow: hidden;
+        background-color: #c84c0c;
+        background-image: url("https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/groundblock.png");
+      }
+
+      .mario-cloud {
+        position: absolute;
+        height: 90px;
+      }
+
+      .mario-cloud.one {
+        top: 120px;
+        animation: marioWind 80s both infinite linear reverse;
+      }
+
+      .mario-cloud.two {
+        top: 205px;
+        animation: marioWind 50s both infinite linear reverse;
+      }
+
+      .mario-cloud.three {
+        top: 280px;
+        animation: marioWind 30s both infinite linear reverse;
+      }
+
+      .mario-skyblocks {
+        position: absolute;
+        left: 44%;
+        top: -68px;
+        transform: translateX(-50%);
+      }
+
+      .mario-brick {
+        position: absolute;
+        top: 0;
+        height: 70px;
+      }
+
+      .mario-brick.b1 { left: 0; }
+      .mario-brick.b2 { left: 70px; }
+      .mario-brick.b3 { left: 140px; }
+      .mario-brick.b4 { left: 210px; }
+
+      .mario-bush {
+        position: absolute;
+        top: 25px;
+        height: 70px;
+      }
+
+      .mario-bush.one { left: 10%; }
+      .mario-bush.two { left: 52%; }
+      .mario-bush.three { left: 82%; }
+
+      .mario-runner {
+        position: absolute;
+        width: 71px;
+        height: 72px;
+        background: url("https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/mariowalking/result.png")
+          left center;
+        top: 22px;
+        left: -200px;
+        animation: marioPlay 0.4s steps(4) infinite, marioRun 7s both infinite linear;
+      }
+
+      @keyframes marioPlay {
+        100% {
+          background-position: -284px;
+        }
+      }
+
+      @keyframes marioRun {
+        from {
+          left: -200px;
+        }
+        to {
+          left: 100%;
+        }
+      }
+
+      @keyframes marioWind {
+        from {
+          left: -300px;
+        }
+        to {
+          left: 100%;
+        }
+      }
+
       .pixel-particle {
         position: absolute;
         width: 9px;
@@ -1164,93 +1304,78 @@
       }
 
       function buildGameScene(currentRole) {
-        const heading = currentRole === "uncle" ? "LEVEL 01 · UNCLE MODE" : "LEVEL 01 · FRIEND QUEST";
+        const heading = currentRole === "uncle" ? "WORLD 1-1 · UNCLE MODE" : "WORLD 1-1 · FRIEND QUEST";
         retroRoot.innerHTML = `
           <div class="retro-header">
             <strong>${heading}</strong>
           </div>
           <div class="retro-hud">
-            <span>HEARTS: 03</span>
-            <span>JOY COINS: 12</span>
-            <span id="journeyState">Journey: Loading...</span>
+            <span>LIVES: 03</span>
+            <span>COINS: 00</span>
+            <span id="journeyState">Scene: Ready</span>
           </div>
-          <div class="game-viewport" id="gameViewport">
-            <div class="world" id="world">
-              <div class="cloud" style="left:80px; top:34px"></div>
-              <div class="cloud" style="left:360px; top:26px"></div>
-              <div class="cloud" style="left:640px; top:48px"></div>
-
-              <div class="platform" style="left:190px; bottom:108px"></div>
-              <div class="platform" style="left:240px; bottom:108px"></div>
-              <div class="platform" style="left:530px; bottom:132px"></div>
-              <div class="platform" style="left:580px; bottom:132px"></div>
-
-              <div class="coin" style="left:205px; bottom:130px"></div>
-              <div class="coin" style="left:555px; bottom:154px"></div>
-              <div class="coin" style="left:780px; bottom:118px"></div>
-              <div class="coin" style="left:960px; bottom:118px"></div>
-
-              <div class="bush" style="left:132px"></div>
-              <div class="bush" style="left:472px"></div>
-              <div class="bush" style="left:822px"></div>
-
-              <div class="hero" id="hero"></div>
-              <div class="castle" id="castle"></div>
-              <div class="goal-character" id="goalCharacter"><div class="baby"></div></div>
-              <div class="ground"></div>
+          <div class="mario-scene">
+            <div class="mario-sky">
+              <div class="mario-scorebar">
+                <p>
+                  <span class="mario-score-row">
+                    <span>MARIO</span>
+                    <span>WORLD</span>
+                    <span>TIME</span>
+                  </span>
+                  <span class="mario-score-row bottom">
+                    <span>000000</span>
+                    <span>1 - 1</span>
+                    <span>111</span>
+                  </span>
+                </p>
+              </div>
+              <img class="mario-cloud one" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/CloudSingle.gif" alt="Mario cloud">
+              <img class="mario-cloud two" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/CloudDouble.gif" alt="Mario cloud">
+              <img class="mario-cloud three" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/CloudTriple.gif" alt="Mario cloud">
+            </div>
+            <div class="mario-ground">
+              <div class="mario-skyblocks">
+                <img class="mario-brick b1" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/Bricks.gif" alt="Mario brick">
+                <img class="mario-brick b2" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/QuestionBlock.gif" alt="Mario question block">
+                <img class="mario-brick b3" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/Bricks.gif" alt="Mario brick">
+                <img class="mario-brick b4" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/Bricks.gif" alt="Mario brick">
+              </div>
+              <img class="mario-bush one" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/BushSingle.gif" alt="Mario bush">
+              <img class="mario-bush two" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/BushDouble.gif" alt="Mario bush">
+              <img class="mario-bush three" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/BushSingle.gif" alt="Mario bush">
+              <div class="mario-runner"></div>
             </div>
           </div>
-          <button class="cta pixel-btn journey-btn" id="journeyBtn">Go Go Hero</button>
+          <button class="cta pixel-btn journey-btn" id="journeyBtn">Start Mario Reveal</button>
         `;
       }
 
-      function animateHeroJourney() {
+      function animateMarioScene() {
         return new Promise((resolve) => {
-          const world = document.getElementById("world");
-          const hero = document.getElementById("hero");
-          const goalCharacter = document.getElementById("goalCharacter");
           const journeyBtn = document.getElementById("journeyBtn");
           const journeyState = document.getElementById("journeyState");
 
-          if (!world || !hero || !goalCharacter || !journeyBtn || !journeyState) {
+          if (!journeyBtn || !journeyState) {
             resolve();
             return;
           }
 
-          journeyState.textContent = "Journey: Press button";
+          journeyState.textContent = "Scene: Press Start";
 
-          const beginJourney = () => {
+          const beginScene = () => {
             journeyBtn.disabled = true;
-            journeyBtn.textContent = "Journey in progress...";
-            journeyState.textContent = "Journey: Running";
+            journeyBtn.textContent = "Running...";
+            journeyState.textContent = "Scene: Running";
 
-            const totalDuration = 9000;
-            const maxWorldShift = 620;
-            const heroStart = 56;
-            const heroEnd = 475;
-            const startTime = performance.now();
-
-            const frame = (now) => {
-              const elapsed = now - startTime;
-              const progress = Math.min(elapsed / totalDuration, 1);
-
-              world.style.transform = `translateX(${-maxWorldShift * progress}px)`;
-              hero.style.left = `${heroStart + (heroEnd - heroStart) * progress}px`;
-              hero.style.bottom = `${52 + Math.sin(progress * 30) * 2}px`;
-              goalCharacter.style.transform = `translateY(${Math.sin(progress * 16) * -2}px)`;
-
-              if (progress < 1) {
-                journeyAnimationFrame = requestAnimationFrame(frame);
-              } else {
-                journeyState.textContent = "Journey: Complete";
-                resolve();
-              }
-            };
-
-            journeyAnimationFrame = requestAnimationFrame(frame);
+            const revealTimer = setTimeout(() => {
+              journeyState.textContent = "Scene: Complete";
+              resolve();
+            }, 5200);
+            timers.push(revealTimer);
           };
 
-          journeyBtn.addEventListener("click", beginJourney, { once: true });
+          journeyBtn.addEventListener("click", beginScene, { once: true });
         });
       }
 
@@ -1290,7 +1415,7 @@
         }, 2200);
         timers.push(autoNudge);
 
-        animateHeroJourney().then(() => {
+        animateMarioScene().then(() => {
           showFinalDialogue(currentRole);
         });
       }
