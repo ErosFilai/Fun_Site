@@ -345,6 +345,296 @@
         }
       }
 
+      .retro-start {
+        border-radius: 0;
+        border: 4px solid #39234f;
+        box-shadow: 0 0 0 4px #f7d168, 0 16px 0 #2a183a;
+        background: linear-gradient(180deg, #332248 0%, #1d1430 100%);
+        color: #f9e8ff;
+        text-align: center;
+        font-family: "Courier New", monospace;
+      }
+
+      .retro-start .warning-badge {
+        background: #f7d168;
+        border: 3px solid #39234f;
+        border-radius: 0;
+        color: #39234f;
+        text-transform: uppercase;
+      }
+
+      .retro-start p {
+        color: #eecbff;
+      }
+
+      .pixel-btn {
+        border: 4px solid #1f102d;
+        border-radius: 0;
+        box-shadow: 0 6px 0 #1f102d;
+        font-family: "Courier New", monospace;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .pixel-btn:active {
+        transform: translateY(4px);
+        box-shadow: 0 2px 0 #1f102d;
+      }
+
+      .retro-panel {
+        padding: 1rem;
+        border-radius: 0;
+        border: 4px solid #2e1942;
+        background: #140e22;
+        box-shadow: 0 0 0 4px #ffcf5a, 0 18px 30px rgba(20, 8, 30, 0.6);
+      }
+
+      .retro-root {
+        color: #f6e6ff;
+        font-family: "Courier New", monospace;
+      }
+
+      .retro-header {
+        text-align: center;
+        margin-bottom: 0.75rem;
+        line-height: 1.3;
+      }
+
+      .retro-hud {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.8rem;
+        font-size: 0.9rem;
+        margin-bottom: 0.6rem;
+      }
+
+      .retro-hud span {
+        display: inline-block;
+        border: 2px solid #5d3f7e;
+        background: #2a1a3e;
+        padding: 0.35rem 0.45rem;
+      }
+
+      .game-viewport {
+        position: relative;
+        overflow: hidden;
+        border: 4px solid #7f5cb5;
+        height: 270px;
+        background: linear-gradient(#4fb6ff 0 58%, #77d765 58%);
+      }
+
+      .world {
+        position: absolute;
+        inset: 0;
+        width: 220%;
+      }
+
+      .cloud,
+      .bush,
+      .platform,
+      .coin,
+      .castle,
+      .goal-character,
+      .hero,
+      .baby {
+        position: absolute;
+      }
+
+      .cloud {
+        width: 62px;
+        height: 22px;
+        background: #f2fbff;
+        box-shadow: 18px 0 #f2fbff, 36px 4px #f2fbff;
+      }
+
+      .bush {
+        width: 60px;
+        height: 24px;
+        background: #278640;
+        box-shadow: 14px -6px #33a450, 29px 0 #278640;
+        bottom: 56px;
+      }
+
+      .platform {
+        width: 44px;
+        height: 14px;
+        background: #99653a;
+        border-top: 4px solid #be8758;
+      }
+
+      .coin {
+        width: 14px;
+        height: 14px;
+        background: #ffd34f;
+        border: 3px solid #cc9d23;
+        animation: coinBob 0.7s steps(2) infinite;
+      }
+
+      @keyframes coinBob {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-4px); }
+        100% { transform: translateY(0); }
+      }
+
+      .ground {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 52px;
+        background: repeating-linear-gradient(
+          90deg,
+          #7d5735 0 20px,
+          #6c492f 20px 40px
+        );
+        border-top: 4px solid #9a6b44;
+      }
+
+      .hero,
+      .goal-character {
+        width: 28px;
+        height: 46px;
+        bottom: 52px;
+      }
+
+      .hero::before,
+      .hero::after,
+      .goal-character::before,
+      .goal-character::after,
+      .baby::before,
+      .baby::after {
+        content: "";
+        position: absolute;
+      }
+
+      .hero {
+        left: 56px;
+        background: #2c4ab8;
+      }
+
+      .hero::before {
+        width: 20px;
+        height: 14px;
+        top: -12px;
+        left: 4px;
+        background: #f9c798;
+      }
+
+      .hero::after {
+        width: 16px;
+        height: 8px;
+        left: 6px;
+        bottom: -8px;
+        background: #2b224f;
+        box-shadow: 10px 0 #2b224f;
+      }
+
+      .goal-character {
+        width: 30px;
+        background: #ce4b89;
+      }
+
+      .goal-character::before {
+        width: 20px;
+        height: 14px;
+        top: -12px;
+        left: 5px;
+        background: #f8c89f;
+      }
+
+      .baby {
+        width: 14px;
+        height: 14px;
+        left: 8px;
+        top: 16px;
+        background: #9ad5ff;
+        border: 2px solid #f4f6ff;
+      }
+
+      .castle {
+        right: 72px;
+        bottom: 52px;
+        width: 84px;
+        height: 100px;
+        background: #c2b0dc;
+        border: 4px solid #5d4c7f;
+      }
+
+      .castle::before {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 40px;
+        left: 30px;
+        bottom: 0;
+        background: #5d4c7f;
+      }
+
+      .castle::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 12px;
+        top: -16px;
+        left: -4px;
+        background: repeating-linear-gradient(90deg, #8f79b8 0 12px, #6d568f 12px 24px);
+        border: 4px solid #5d4c7f;
+      }
+
+      .goal-character {
+        right: 168px;
+      }
+
+      .dialogue-box {
+        margin-top: 0.85rem;
+        border: 4px solid #41265d;
+        background: #fff1ff;
+        color: #371c52;
+        padding: 0.85rem;
+        text-align: center;
+        animation: celebrationPop 0.45s ease both;
+      }
+
+      .dialogue-box h2 {
+        margin: 0;
+        font-size: 1.25rem;
+      }
+
+      .dialogue-box p {
+        color: #593a77;
+        margin-top: 0.6rem;
+        font-size: 0.95rem;
+      }
+
+      .journey-btn {
+        margin-top: 0.55rem;
+        width: 100%;
+        max-width: 220px;
+      }
+
+      .retro-replay {
+        max-width: 260px;
+        margin-top: 0.6rem;
+      }
+
+      .pixel-particle {
+        position: absolute;
+        width: 9px;
+        height: 9px;
+        animation: pixelBurst 1400ms ease-out forwards;
+      }
+
+      @keyframes pixelBurst {
+        0% {
+          transform: translate3d(0, 0, 0) scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: translate3d(var(--x), var(--y), 0) scale(0.3);
+          opacity: 0;
+        }
+      }
+
       @media (max-width: 560px) {
         .panel {
           border-radius: 22px;
@@ -358,6 +648,14 @@
           top: -14px;
           right: 10px;
           font-size: 0.74rem;
+        }
+
+        .game-viewport {
+          height: 232px;
+        }
+
+        .retro-hud {
+          font-size: 0.78rem;
         }
       }
     </style>
@@ -373,10 +671,10 @@
 
     <main class="app" aria-live="polite">
       <section class="screen active" id="warningScreen">
-        <div class="panel">
-          <div class="warning-badge">Njoftim prioritar familjar</div>
-          <h1>Përditësim i rëndësishëm familjar</h1>
-          <p>
+        <div class="panel" id="warningPanel">
+          <div class="warning-badge" id="warningBadge">Njoftim prioritar familjar</div>
+          <h1 id="warningTitle">Përditësim i rëndësishëm familjar</h1>
+          <p id="warningText">
             Ju lutem vazhdoni me kujdes. Ky mesazh mund të shkaktojë lumturi ekstreme,
             përqafime të shpeshta dhe buzëqeshje pa fund.
           </p>
@@ -411,12 +709,19 @@
           </div>
         </div>
       </section>
+
+      <section class="screen" id="retroScreen">
+        <div class="panel retro-panel">
+          <div id="retroRoot" class="retro-root"></div>
+        </div>
+      </section>
     </main>
 
     <script>
       const warningScreen = document.getElementById("warningScreen");
       const loadingScreen = document.getElementById("loadingScreen");
       const revealScreen = document.getElementById("revealScreen");
+      const retroScreen = document.getElementById("retroScreen");
       const revealContent = document.getElementById("revealContent");
       const openBtn = document.getElementById("openBtn");
       const replayBtn = document.getElementById("replayBtn");
@@ -424,9 +729,16 @@
       const confettiLayer = document.getElementById("confettiLayer");
       const revealTitle = document.getElementById("revealTitle");
       const revealMessage = document.getElementById("revealMessage");
+      const warningPanel = document.getElementById("warningPanel");
+      const warningBadge = document.getElementById("warningBadge");
+      const warningTitle = document.getElementById("warningTitle");
+      const warningText = document.getElementById("warningText");
+      const retroRoot = document.getElementById("retroRoot");
 
       const params = new URLSearchParams(window.location.search);
-      const target = (params.get("target") || "grandpa").toLowerCase();
+      const role = (params.get("who") || params.get("target") || "grandpa").toLowerCase();
+      const isRetroRole = role === "uncle" || role === "friend";
+
       const revealCopy = {
         grandpa: {
           title: "I dashur Gjysh",
@@ -438,19 +750,38 @@
         },
       };
 
-      const selectedCopy = revealCopy[target] || revealCopy.grandpa;
+      const retroCopy = {
+        uncle: {
+          start: "Level Up: Uncle Mode",
+          finalTitle: "Uncle Mode Activated",
+          finalMessage:
+            "A new little player is joining the family — you’re going to be an uncle.",
+        },
+        friend: {
+          start: "New Quest Unlocked",
+          finalTitle: "Bonus Level: Bestie Edition",
+          finalMessage: "Plot twist: a tiny new player is on the way.",
+        },
+      };
+
+      const selectedCopy = revealCopy[role] || revealCopy.grandpa;
       revealTitle.textContent = selectedCopy.title;
       revealMessage.textContent = selectedCopy.message;
 
       let timers = [];
+      let journeyAnimationFrame = null;
 
       function clearAllTimers() {
         timers.forEach((id) => clearTimeout(id));
         timers = [];
+        if (journeyAnimationFrame) {
+          cancelAnimationFrame(journeyAnimationFrame);
+          journeyAnimationFrame = null;
+        }
       }
 
       function showScreen(screen) {
-        [warningScreen, loadingScreen, revealScreen].forEach((el) => {
+        [warningScreen, loadingScreen, revealScreen, retroScreen].forEach((el) => {
           el.classList.remove("active");
         });
         screen.classList.add("active");
@@ -494,6 +825,27 @@
         timers.push(cleanup);
       }
 
+      function createPixelCelebration() {
+        const palette = ["#ff7aa2", "#ffd54f", "#83f3ff", "#9dff8d", "#ff9de9", "#ffc08e"];
+        const burstCount = 80;
+
+        for (let i = 0; i < burstCount; i++) {
+          const particle = document.createElement("div");
+          particle.className = "pixel-particle";
+          particle.style.left = `${45 + Math.random() * 10}%`;
+          particle.style.top = `${35 + Math.random() * 30}%`;
+          particle.style.background = palette[Math.floor(Math.random() * palette.length)];
+          particle.style.setProperty("--x", `${-180 + Math.random() * 360}px`);
+          particle.style.setProperty("--y", `${-190 + Math.random() * 230}px`);
+          confettiLayer.appendChild(particle);
+
+          const removeParticle = setTimeout(() => {
+            particle.remove();
+          }, 1500);
+          timers.push(removeParticle);
+        }
+      }
+
       function runRevealFlow() {
         clearAllTimers();
         resetStatuses();
@@ -519,13 +871,167 @@
         timers.push(finish);
       }
 
-      openBtn.addEventListener("click", runRevealFlow);
+      function buildGameScene(currentRole) {
+        const heading = currentRole === "uncle" ? "LEVEL 01 · UNCLE MODE" : "LEVEL 01 · FRIEND QUEST";
+        retroRoot.innerHTML = `
+          <div class="retro-header">
+            <strong>${heading}</strong>
+          </div>
+          <div class="retro-hud">
+            <span>HEARTS: 03</span>
+            <span>JOY COINS: 12</span>
+            <span id="journeyState">Journey: Loading...</span>
+          </div>
+          <div class="game-viewport" id="gameViewport">
+            <div class="world" id="world">
+              <div class="cloud" style="left:80px; top:34px"></div>
+              <div class="cloud" style="left:360px; top:26px"></div>
+              <div class="cloud" style="left:640px; top:48px"></div>
+
+              <div class="platform" style="left:190px; bottom:108px"></div>
+              <div class="platform" style="left:240px; bottom:108px"></div>
+              <div class="platform" style="left:530px; bottom:132px"></div>
+              <div class="platform" style="left:580px; bottom:132px"></div>
+
+              <div class="coin" style="left:205px; bottom:130px"></div>
+              <div class="coin" style="left:555px; bottom:154px"></div>
+              <div class="coin" style="left:780px; bottom:118px"></div>
+              <div class="coin" style="left:960px; bottom:118px"></div>
+
+              <div class="bush" style="left:132px"></div>
+              <div class="bush" style="left:472px"></div>
+              <div class="bush" style="left:822px"></div>
+
+              <div class="hero" id="hero"></div>
+              <div class="castle" id="castle"></div>
+              <div class="goal-character" id="goalCharacter"><div class="baby"></div></div>
+              <div class="ground"></div>
+            </div>
+          </div>
+          <button class="cta pixel-btn journey-btn" id="journeyBtn">Go Go Hero</button>
+        `;
+      }
+
+      function animateHeroJourney() {
+        return new Promise((resolve) => {
+          const world = document.getElementById("world");
+          const hero = document.getElementById("hero");
+          const goalCharacter = document.getElementById("goalCharacter");
+          const journeyBtn = document.getElementById("journeyBtn");
+          const journeyState = document.getElementById("journeyState");
+
+          if (!world || !hero || !goalCharacter || !journeyBtn || !journeyState) {
+            resolve();
+            return;
+          }
+
+          journeyState.textContent = "Journey: Press button";
+
+          const beginJourney = () => {
+            journeyBtn.disabled = true;
+            journeyBtn.textContent = "Journey in progress...";
+            journeyState.textContent = "Journey: Running";
+
+            const totalDuration = 9000;
+            const maxWorldShift = 620;
+            const heroStart = 56;
+            const heroEnd = 475;
+            const startTime = performance.now();
+
+            const frame = (now) => {
+              const elapsed = now - startTime;
+              const progress = Math.min(elapsed / totalDuration, 1);
+
+              world.style.transform = `translateX(${-maxWorldShift * progress}px)`;
+              hero.style.left = `${heroStart + (heroEnd - heroStart) * progress}px`;
+              hero.style.bottom = `${52 + Math.sin(progress * 30) * 2}px`;
+              goalCharacter.style.transform = `translateY(${Math.sin(progress * 16) * -2}px)`;
+
+              if (progress < 1) {
+                journeyAnimationFrame = requestAnimationFrame(frame);
+              } else {
+                journeyState.textContent = "Journey: Complete";
+                resolve();
+              }
+            };
+
+            journeyAnimationFrame = requestAnimationFrame(frame);
+          };
+
+          journeyBtn.addEventListener("click", beginJourney, { once: true });
+        });
+      }
+
+      function showFinalDialogue(currentRole) {
+        const copy = retroCopy[currentRole] || retroCopy.friend;
+
+        const box = document.createElement("div");
+        box.className = "dialogue-box";
+        box.innerHTML = `
+          <h2>${copy.finalTitle}</h2>
+          <p>${copy.finalMessage}</p>
+          <button class="replay pixel-btn retro-replay" id="retroReplayBtn">Play Again</button>
+        `;
+
+        retroRoot.appendChild(box);
+        createPixelCelebration();
+        createConfetti();
+
+        const retroReplayBtn = document.getElementById("retroReplayBtn");
+        retroReplayBtn.addEventListener("click", () => {
+          resetExperience();
+          showScreen(warningScreen);
+        });
+      }
+
+      function startRetroReveal(currentRole) {
+        clearAllTimers();
+        resetExperience();
+        showScreen(retroScreen);
+        buildGameScene(currentRole);
+
+        const autoNudge = setTimeout(() => {
+          const journeyBtn = document.getElementById("journeyBtn");
+          if (journeyBtn && !journeyBtn.disabled) {
+            journeyBtn.classList.add("pulse");
+          }
+        }, 2200);
+        timers.push(autoNudge);
+
+        animateHeroJourney().then(() => {
+          showFinalDialogue(currentRole);
+        });
+      }
+
+      function resetExperience() {
+        clearAllTimers();
+        confettiLayer.innerHTML = "";
+        retroRoot.innerHTML = "";
+        resetStatuses();
+      }
+
+      if (isRetroRole) {
+        const startCopy = retroCopy[role] || retroCopy.friend;
+        warningPanel.classList.add("retro-start");
+        warningBadge.textContent = "Pixel Quest Invite";
+        warningTitle.textContent = startCopy.start;
+        warningText.textContent =
+          "A mini retro adventure awaits. Guide the hero to the castle for a surprise ending.";
+        openBtn.textContent = "Press Start";
+        openBtn.classList.add("pixel-btn");
+      }
+
+      openBtn.addEventListener("click", () => {
+        if (isRetroRole) {
+          startRetroReveal(role);
+        } else {
+          runRevealFlow();
+        }
+      });
 
       replayBtn.addEventListener("click", () => {
         showScreen(warningScreen);
-        clearAllTimers();
-        resetStatuses();
-        confettiLayer.innerHTML = "";
+        resetExperience();
       });
     </script>
   </body>
