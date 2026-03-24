@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Njoftim i Veçantë Familjar</title>
+
     <style>
       :root {
         --bg-1: #fff3e6;
@@ -425,17 +426,7 @@
       const revealMessage = document.getElementById("revealMessage");
 
       const params = new URLSearchParams(window.location.search);
-      const rawTarget = (params.get("target") || "grandpa").toLowerCase();
-      const normalizedTarget = ({
-        grandpa: "grandpa",
-        gjysh: "grandpa",
-        grandpa_page: "grandpa",
-        grandma: "grandma",
-        gjyshe: "grandma",
-        qjyshe: "grandma",
-        grandma_page: "grandma",
-      })[rawTarget] || "grandpa";
-
+      const target = (params.get("target") || "grandpa").toLowerCase();
       const revealCopy = {
         grandpa: {
           title: "I dashur Gjysh",
@@ -447,7 +438,7 @@
         },
       };
 
-      const selectedCopy = revealCopy[normalizedTarget] || revealCopy.grandpa;
+      const selectedCopy = revealCopy[target] || revealCopy.grandpa;
       revealTitle.textContent = selectedCopy.title;
       revealMessage.textContent = selectedCopy.message;
 
