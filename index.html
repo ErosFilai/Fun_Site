@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Njoftim për Gjyshin dhe Gjyshen</title>
+    <title>Njoftim i Veçantë Familjar</title>
+
     <style>
       :root {
         --bg-1: #fff3e6;
@@ -374,7 +375,7 @@
       <section class="screen active" id="warningScreen">
         <div class="panel">
           <div class="warning-badge">Njoftim prioritar familjar</div>
-          <h1>Përditësim i rëndësishëm për Gjyshin dhe Gjyshen</h1>
+          <h1>Përditësim i rëndësishëm familjar</h1>
           <p>
             Ju lutem vazhdoni me kujdes. Ky mesazh mund të shkaktojë lumturi ekstreme,
             përqafime të shpeshta dhe buzëqeshje pa fund.
@@ -389,7 +390,7 @@
           <h1>Po kryhet skanimi i gëzimit...</h1>
           <div class="scan-lines"></div>
           <div class="status-wrap" id="statusWrap">
-            <div class="status-item">Po kontrollohet gatishmëria e Gjyshit dhe Gjyshes...</div>
+            <div class="status-item">Po kontrollohet gatishmëria për surprizën...</div>
             <div class="status-item">Po matet kapaciteti për përqafime...</div>
             <div class="status-item">Po zbulohet potenciali për ndarje snack-esh...</div>
           </div>
@@ -400,11 +401,11 @@
         <div class="panel reveal-card">
           <div class="promo-badge">Promotion Unlocked</div>
           <div class="reveal-content" id="revealContent">
-            <h1 class="reveal-title">I dashur Gjysh dhe e dashur Gjyshe</h1>
-            <p class="main-msg">Bëhuni gati për përqafime dhe përralla — do të bëheni gjyshër!</p>
+            <h1 class="reveal-title" id="revealTitle">Surpriza po zbulohet...</h1>
+            <p class="main-msg" id="revealMessage">Po vjen lajmi i madh familjar!</p>
             <p class="small-fun">
               Kujdes: efektet anësore mund të përfshijnë buzëqeshje të tepërta,
-              tregim të fotove të bebit tek të gjithë dhe statusin “gjyshërit e preferuar”.
+              tregim të fotove të bebit tek të gjithë dhe krenari pa fund në çdo bisedë.
             </p>
             <button class="replay" id="replayBtn">Riluaj Zbulimin</button>
           </div>
@@ -421,6 +422,25 @@
       const replayBtn = document.getElementById("replayBtn");
       const statusItems = Array.from(document.querySelectorAll(".status-item"));
       const confettiLayer = document.getElementById("confettiLayer");
+      const revealTitle = document.getElementById("revealTitle");
+      const revealMessage = document.getElementById("revealMessage");
+
+      const params = new URLSearchParams(window.location.search);
+      const target = (params.get("target") || "grandpa").toLowerCase();
+      const revealCopy = {
+        grandpa: {
+          title: "I dashur Gjysh",
+          message: "Bëhu gati për përqafime dhe përralla — do të bëhesh gjysh!",
+        },
+        grandma: {
+          title: "E dashur Gjyshe",
+          message: "Bëhu gati për përqafime dhe përralla — do të bëhesh gjyshe!",
+        },
+      };
+
+      const selectedCopy = revealCopy[target] || revealCopy.grandpa;
+      revealTitle.textContent = selectedCopy.title;
+      revealMessage.textContent = selectedCopy.message;
 
       let timers = [];
 
