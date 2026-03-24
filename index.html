@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Njoftim për Gjyshin</title>
+    <title>Njoftim i Veçantë Familjar</title>
     <style>
       :root {
         --bg-1: #fff3e6;
@@ -36,12 +36,69 @@
         place-items: center;
         overflow: hidden;
         padding: 1rem;
+        position: relative;
+      }
+
+      .bg-shapes {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .bg-shape {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(0.5px);
+        opacity: 0.45;
+        animation: floatShape linear infinite;
+      }
+
+      .bg-shape.one {
+        width: 180px;
+        height: 180px;
+        left: 8%;
+        top: 70%;
+        background: radial-gradient(circle at 30% 30%, #ffd7e8, #ffc1dc);
+        animation-duration: 18s;
+      }
+
+      .bg-shape.two {
+        width: 220px;
+        height: 220px;
+        right: 7%;
+        top: 15%;
+        background: radial-gradient(circle at 30% 30%, #ffe7b8, #ffd78c);
+        animation-duration: 22s;
+      }
+
+      .bg-shape.three {
+        width: 120px;
+        height: 120px;
+        left: 48%;
+        top: 8%;
+        background: radial-gradient(circle at 30% 30%, #ffd2ee, #ffb3dd);
+        animation-duration: 20s;
+      }
+
+      @keyframes floatShape {
+        0% {
+          transform: translate3d(0, 0, 0) scale(1);
+        }
+        50% {
+          transform: translate3d(20px, -30px, 0) scale(1.08);
+        }
+        100% {
+          transform: translate3d(-16px, -58px, 0) scale(0.96);
+        }
       }
 
       .app {
         width: min(94vw, 720px);
         min-height: 460px;
         position: relative;
+        z-index: 1;
       }
 
       .panel {
@@ -98,26 +155,44 @@
         color: var(--muted);
       }
 
-      .cta {
+      .cta,
+      .replay {
         margin-top: 1.7rem;
         width: min(100%, 340px);
         padding: 0.95rem 1.2rem;
         border: 0;
         border-radius: 16px;
-        background: linear-gradient(135deg, var(--warning), var(--warning-2));
         color: #fff;
-        font-size: 1.1rem;
+        font-size: 1.08rem;
         font-weight: 800;
         cursor: pointer;
+        transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
+      }
+
+      .cta {
+        background: linear-gradient(135deg, var(--warning), var(--warning-2));
         box-shadow: 0 10px 26px rgba(255, 123, 84, 0.35);
-        transition: transform 0.16s ease, box-shadow 0.16s ease;
+      }
+
+      .replay {
+        background: linear-gradient(135deg, #ff5d8f, #ff8f68);
+        box-shadow: 0 10px 24px rgba(255, 93, 143, 0.35);
       }
 
       .cta:hover,
-      .cta:focus-visible {
-        transform: translateY(-2px) scale(1.01);
+      .cta:focus-visible,
+      .replay:hover,
+      .replay:focus-visible {
+        transform: translateY(-2px) scale(1.03);
         box-shadow: 0 14px 28px rgba(255, 123, 84, 0.45);
+        filter: saturate(1.06);
         outline: none;
+      }
+
+      .cta:active,
+      .replay:active {
+        transform: translateY(1px) scale(0.97);
+        box-shadow: 0 6px 14px rgba(68, 22, 43, 0.22);
       }
 
       .scan-lines {
@@ -175,7 +250,7 @@
       .reveal-card {
         text-align: center;
         position: relative;
-        overflow: hidden;
+        overflow: visible;
       }
 
       .reveal-card::before {
@@ -188,16 +263,36 @@
         pointer-events: none;
       }
 
+      .promo-badge {
+        position: absolute;
+        top: -16px;
+        right: 16px;
+        z-index: 5;
+        padding: 0.5rem 0.85rem;
+        border-radius: 999px;
+        border: 1px solid #ffd06d;
+        background: linear-gradient(135deg, #ffe895, #ffc55e);
+        color: #8a4f00;
+        font-size: 0.8rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        box-shadow: 0 8px 18px rgba(117, 77, 15, 0.24);
+      }
+
       .reveal-content {
         position: relative;
         z-index: 2;
-        animation: popIn 0.7s cubic-bezier(0.2, 0.85, 0.22, 1.2) both;
+        animation: celebrationPop 0.8s cubic-bezier(0.2, 0.85, 0.22, 1.2) both;
       }
 
-      @keyframes popIn {
+      @keyframes celebrationPop {
         0% {
           opacity: 0;
-          transform: scale(0.8) translateY(12px);
+          transform: scale(0.78) translateY(18px);
+        }
+        60% {
+          opacity: 1;
+          transform: scale(1.03) translateY(-2px);
         }
         100% {
           opacity: 1;
@@ -221,24 +316,6 @@
         font-size: clamp(0.95rem, 3.1vw, 1.06rem);
       }
 
-      .emoji-row {
-        margin-top: 1.1rem;
-        font-size: 1.75rem;
-      }
-
-      .replay {
-        margin-top: 1.5rem;
-        border: 0;
-        border-radius: 14px;
-        padding: 0.85rem 1.1rem;
-        background: linear-gradient(135deg, #ff5d8f, #ff8f68);
-        color: #fff;
-        font-weight: 800;
-        font-size: 1rem;
-        cursor: pointer;
-        box-shadow: 0 10px 24px rgba(255, 93, 143, 0.35);
-      }
-
       .confetti-layer {
         position: fixed;
         inset: 0;
@@ -249,16 +326,21 @@
 
       .confetti {
         position: absolute;
-        top: -10vh;
-        font-size: clamp(1rem, 3vw, 1.7rem);
-        animation: fall linear forwards;
-        opacity: 0.95;
+        top: -12vh;
+        border-radius: 3px;
+        animation-name: confettiFall;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+        opacity: 0.94;
       }
 
-      @keyframes fall {
-        to {
-          transform: translateY(120vh) rotate(480deg);
-          opacity: 0.8;
+      @keyframes confettiFall {
+        0% {
+          transform: translate3d(0, -10vh, 0) rotate(0deg);
+        }
+        100% {
+          transform: translate3d(var(--drift, 0px), 120vh, 0) rotate(620deg);
+          opacity: 0.85;
         }
       }
 
@@ -270,17 +352,29 @@
         .app {
           min-height: 500px;
         }
+
+        .promo-badge {
+          top: -14px;
+          right: 10px;
+          font-size: 0.74rem;
+        }
       }
     </style>
   </head>
   <body>
+    <div class="bg-shapes" aria-hidden="true">
+      <span class="bg-shape one"></span>
+      <span class="bg-shape two"></span>
+      <span class="bg-shape three"></span>
+    </div>
+
     <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
 
     <main class="app" aria-live="polite">
       <section class="screen active" id="warningScreen">
         <div class="panel">
-          <div class="warning-badge">⚠ Njoftim prioritar familjar</div>
-          <h1>⚠ Përditësim i rëndësishëm për Gjyshin</h1>
+          <div class="warning-badge">Njoftim prioritar familjar</div>
+          <h1>Përditësim i rëndësishëm familjar</h1>
           <p>
             Ju lutem vazhdoni me kujdes. Ky mesazh mund të shkaktojë lumturi ekstreme,
             përqafime të shpeshta dhe buzëqeshje pa fund.
@@ -291,11 +385,11 @@
 
       <section class="screen" id="loadingScreen">
         <div class="panel">
-          <div class="warning-badge">📡 Sistemi në përpunim</div>
+          <div class="warning-badge">Sistemi në përpunim</div>
           <h1>Po kryhet skanimi i gëzimit...</h1>
           <div class="scan-lines"></div>
           <div class="status-wrap" id="statusWrap">
-            <div class="status-item">Po kontrollohet gatishmëria e Gjyshit...</div>
+            <div class="status-item">Po kontrollohet gatishmëria për surprizën...</div>
             <div class="status-item">Po matet kapaciteti për përqafime...</div>
             <div class="status-item">Po zbulohet potenciali për ndarje snack-esh...</div>
           </div>
@@ -304,14 +398,14 @@
 
       <section class="screen" id="revealScreen">
         <div class="panel reveal-card">
-          <div class="reveal-content">
-            <h1 class="reveal-title">I dashur Gjysh 🍼</h1>
-            <p class="main-msg">Bëhu gati për përqafime dhe përralla — do të bëhesh gjysh!</p>
+          <div class="promo-badge">Promotion Unlocked</div>
+          <div class="reveal-content" id="revealContent">
+            <h1 class="reveal-title" id="revealTitle">Surpriza po zbulohet...</h1>
+            <p class="main-msg" id="revealMessage">Po vjen lajmi i madh familjar!</p>
             <p class="small-fun">
               Kujdes: efektet anësore mund të përfshijnë buzëqeshje të tepërta,
-              tregim të fotove të bebit tek të gjithë dhe statusin “gjyshi i preferuar”.
+              tregim të fotove të bebit tek të gjithë dhe krenari pa fund në çdo bisedë.
             </p>
-            <div class="emoji-row" aria-hidden="true">🍼 👶 🎉 💛</div>
             <button class="replay" id="replayBtn">Riluaj Zbulimin</button>
           </div>
         </div>
@@ -322,10 +416,40 @@
       const warningScreen = document.getElementById("warningScreen");
       const loadingScreen = document.getElementById("loadingScreen");
       const revealScreen = document.getElementById("revealScreen");
+      const revealContent = document.getElementById("revealContent");
       const openBtn = document.getElementById("openBtn");
       const replayBtn = document.getElementById("replayBtn");
       const statusItems = Array.from(document.querySelectorAll(".status-item"));
       const confettiLayer = document.getElementById("confettiLayer");
+      const revealTitle = document.getElementById("revealTitle");
+      const revealMessage = document.getElementById("revealMessage");
+
+      const params = new URLSearchParams(window.location.search);
+      const rawTarget = (params.get("target") || "grandpa").toLowerCase();
+      const normalizedTarget = ({
+        grandpa: "grandpa",
+        gjysh: "grandpa",
+        grandpa_page: "grandpa",
+        grandma: "grandma",
+        gjyshe: "grandma",
+        qjyshe: "grandma",
+        grandma_page: "grandma",
+      })[rawTarget] || "grandpa";
+
+      const revealCopy = {
+        grandpa: {
+          title: "I dashur Gjysh",
+          message: "Bëhu gati për përqafime dhe përralla — do të bëhesh gjysh!",
+        },
+        grandma: {
+          title: "E dashur Gjyshe",
+          message: "Bëhu gati për përqafime dhe përralla — do të bëhesh gjyshe!",
+        },
+      };
+
+      const selectedCopy = revealCopy[normalizedTarget] || revealCopy.grandpa;
+      revealTitle.textContent = selectedCopy.title;
+      revealMessage.textContent = selectedCopy.message;
 
       let timers = [];
 
@@ -345,24 +469,37 @@
         statusItems.forEach((item) => item.classList.remove("active"));
       }
 
-      function spawnConfettiBurst() {
+      function createConfetti() {
         confettiLayer.innerHTML = "";
-        const icons = ["🎉", "💛", "🍼", "👶", "✨", "🎊"];
 
-        for (let i = 0; i < 56; i++) {
-          const bit = document.createElement("span");
+        const palette = ["#ff7aa2", "#ffd166", "#7dd3fc", "#b8f2a5", "#c4a1ff", "#ff9f6e"];
+        const total = 90;
+
+        for (let i = 0; i < total; i++) {
+          const bit = document.createElement("div");
           bit.className = "confetti";
-          bit.textContent = icons[Math.floor(Math.random() * icons.length)];
-          bit.style.left = `${Math.random() * 100}vw`;
-          bit.style.animationDuration = `${4 + Math.random() * 3.5}s`;
-          bit.style.animationDelay = `${Math.random() * 0.8}s`;
-          bit.style.transform = `translateY(0) rotate(${Math.random() * 180}deg)`;
+
+          const size = 6 + Math.random() * 10;
+          const xPos = Math.random() * 100;
+          const drift = -60 + Math.random() * 120;
+          const duration = 3.8 + Math.random() * 3.8;
+          const delay = Math.random() * 0.6;
+
+          bit.style.width = `${size}px`;
+          bit.style.height = `${size * (0.55 + Math.random() * 0.8)}px`;
+          bit.style.left = `${xPos}vw`;
+          bit.style.background = palette[Math.floor(Math.random() * palette.length)];
+          bit.style.animationDuration = `${duration}s`;
+          bit.style.animationDelay = `${delay}s`;
+          bit.style.setProperty("--drift", `${drift}px`);
+          bit.style.borderRadius = Math.random() > 0.5 ? "50%" : "3px";
+
           confettiLayer.appendChild(bit);
         }
 
         const cleanup = setTimeout(() => {
           confettiLayer.innerHTML = "";
-        }, 7600);
+        }, 7800);
         timers.push(cleanup);
       }
 
@@ -382,7 +519,10 @@
 
         const finish = setTimeout(() => {
           showScreen(revealScreen);
-          spawnConfettiBurst();
+          revealContent.style.animation = "none";
+          void revealContent.offsetWidth;
+          revealContent.style.animation = "celebrationPop 0.8s cubic-bezier(0.2, 0.85, 0.22, 1.2) both";
+          createConfetti();
         }, 3400);
 
         timers.push(finish);
